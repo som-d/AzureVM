@@ -301,7 +301,7 @@ Type "yes" and Press **Enter**.
    ```
    Type **yes** press **Enter** again type **yes** press **Enter**
 
-   ![alt text](image.png)
+   ![alt text](images/out.png)
 
 4. **Access Services**
    - Grafana: `http://<collector_public_ip>:3000`   userid: admin  passwd: admin (default) then navigate to Home > Dashboards > Node Exporter Full (dashboardName)
@@ -315,37 +315,37 @@ Type "yes" and Press **Enter**.
 
 - **Grafana Login**
 
-   ![alt text](image-1.png)
+   ![alt text](images/out-1.png)
 
-   ![alt text](image-2.png)
+   ![alt text](images/out-2.png)
 
 - **Grafana Dashboard**
 
    navigate to Home > Dashboards > Node Exporter Full (dashboardName) 
    Click on **Node Exporter Full**
 
-   ![alt text](image-3.png)
+   ![alt text](images/out-3.png)
 
-   ![alt text](image-4.png)
+   ![alt text](images/out-4.png)
 
 - **Prometheus Dashboard**
    Navigate to Status > Target health
 
-   ![alt text](image-6.png)
+   ![alt text](images/out-6.png)
 
-   ![alt text](image-5.png)
+   ![alt text](images/out-5.png)
 
    **In Alerts**
 
-   ![alt text](image-7.png)
+   ![alt text](images/out-7.png)
 
 - **Alertmanager**
 
-   ![alt text](image-8.png)
+   ![alt text](images/out-8.png)
 
 - **Uptime Kuma**
 
-   ![alt text](image-9.png)
+   ![alt text](images/out-9.png)
 ---
 ## Best Practices & Troubleshooting
 
