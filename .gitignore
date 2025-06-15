@@ -7,4 +7,5 @@
 crash.log
 .terraform
 .terraform.*
+.terraform.lock.hcl
 terraform.tfstate*
