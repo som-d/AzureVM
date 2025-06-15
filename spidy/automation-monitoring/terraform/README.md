@@ -40,7 +40,7 @@ This folder contains [Terraform](https://www.terraform.io/) code to provision th
     terraform show   
     ```
 
-6. **(Optional) Destroy infrastructure:**
+6. **Destroy infrastructure:**
     ```sh
     terraform destroy
     ```

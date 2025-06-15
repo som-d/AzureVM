@@ -21,7 +21,7 @@ This project automates the deployment of a full-featured open-source monitoring 
 ```plaintext
 ansible/
 ├── inventory.ini
-├── playbook.yml
+├── main.yml
 ├── group_vars/
 │   └── all.yml
 ├── files/
@@ -52,7 +52,7 @@ ansible/
 4. **Run the Playbook**
    ```sh
    cd ansible
-   ansible-playbook -i inventory.ini playbook.yml
+   ansible-playbook -i inventory.ini main.yml
    ```
 
 5. **Access Services**
