@@ -4,6 +4,8 @@
 # collector_private_ip: "10.0.1.4"
 # collector_public_ip: "13.90.248.136"
 
+#Replace "=" with ":"
+
 agent_private_ip: "10.0.1.5"
 agent_public_ip: "40.71.45.177"
 collector_private_ip: "10.0.1.4"

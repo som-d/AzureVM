@@ -212,6 +212,9 @@ Type "yes" and Press **Enter**.
 3. **VM Details:**  (**VIMP**)
    Save IPs and credentials for use with Ansible.
 
+   Past the IP in ansible/group_vars/all_vars.yml
+   
+   Replace "=" with ":"
 
 
 ![alt text](images/tf.png)
