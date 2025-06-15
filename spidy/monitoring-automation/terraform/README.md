@@ -16,6 +16,7 @@ This folder contains [Terraform](https://www.terraform.io/) code to provision th
 
 1. **Initialize Terraform (downloads providers and modules):**
     ```sh
+    cd terraform
     terraform init
     ```
 

@@ -209,7 +209,10 @@ ansible-galaxy collection list | grep community.docker
    ```
 Type "yes" and Press **Enter**.
 
-**Copy IP to use in ansible inventory**
+3. **VM Details:**  (**VIMP**)
+   Save IPs and credentials for use with Ansible.
+
+
 
 ![alt text](images/tf.png)
 ![alt text](images/tf-1.png)
@@ -221,14 +224,16 @@ Type "yes" and Press **Enter**.
 **Copy IP to use in ansible inventory**
 
 ![alt text](images/tf-3.png)
+
+---
+
+**Past the IP in ansible/group_vars/all_vars.yml**
+
 ![alt text](images/tf-4.png)
 
 **Replace "=" with ":"**
 
 ![alt text](images/tf-5.png)
-
-3. **VM Details:**  
-   Save public IPs and credentials for use with Ansible.
 
 ---
 

@@ -11,7 +11,7 @@ This project automates the deployment of a full-featured open-source monitoring 
 - Infrastructure as Code: Use Terraform (not included here) to provision VMs and outputs their IPs.
 - Ansible playbook installs Docker & Docker Compose and configures everything.
 - Docker Compose manages all services on the collector VM.
-- Easy-to-extend: Add more Node Exporter agents (just add to `group_vars/all.yml`).
+- Easy-to-extend: Add more Node Exporter agents (just add to `group_vars/all_vars.yml`).
 - Preloaded Grafana dashboards, datasources, and Prometheus alerts.
 
 ---
@@ -23,7 +23,7 @@ ansible/
 ├── inventory.ini
 ├── main.yml
 ├── group_vars/
-│   └── all.yml
+│   └── all_vars.yml
 ├── files/
 │   ├── docker-compose.yml
 │   ├── prometheus.yml
@@ -44,7 +44,7 @@ ansible/
    - Note the public/private IPs for collector and agent.
 
 2. **Update Ansible Variables**
-   - Edit `group_vars/all.yml` to reflect your VM IPs and alert email.
+   - Edit `group_vars/all_vars.yml` to reflect your VM IPs and alert email.
 
 3. **Update Inventory**
    - Edit `inventory.ini` with the public IPs of your VMs.
@@ -67,7 +67,7 @@ ansible/
 
 - **Add more agents:**  
   - Deploy Node Exporter on additional VMs.
-  - Add their private IP and port to `prometheus_targets` in `group_vars/all.yml`.
+  - Add their private IP and port to `prometheus_targets` in `group_vars/all_vars.yml`.
 
 - **Change alert rules:**  
   - Edit `files/alert.rules.yml`.
@@ -76,14 +76,14 @@ ansible/
   - Place JSON files in `files/grafana/dashboards/`.
 
 - **Change alert email:**  
-  - Edit `alert_email` in `group_vars/all.yml`.
+  - Edit `alert_email` in `group_vars/all_vars.yml`.
 
 ---
 
 ## For Clients & Freelancers
 
 - Fork/clone this repo for every project.
-- Update `group_vars/all.yml` for each client.
+- Update `group_vars/all_vars.yml` for each client.
 - Use the same structure for new monitoring gigs (Fiverr, Upwork, etc).
 - All config is managed from variables for easy maintenance.
 
