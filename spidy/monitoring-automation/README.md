@@ -48,7 +48,7 @@ This Standard Operating Procedure (SOP) outlines the automated setup of a scalab
   - `control-node/`: Control Node configuration and setup scripts
   - `terraform/`: Infrastructure as Code for Azure VMs
   - `ansible/`: Playbooks, inventory, and variables for automation
-![alt text](image.png)
+![alt text](img/image.png)
 ---
 
 
@@ -119,7 +119,7 @@ ssh-copy-id <your-username>@<control-node-ip>
 - For any login or permission issues, ensure your user has `sudo` privileges.
 - For SSH connection issues, ensure port 22 is open and accessible, and your user is correctly configured on the control node.
 
-![alt text](img/image-1.png)
+![alt text](img/img/image-1.png)
 
 ---
 ## Step-by-Step Control Node Setup Instructions
@@ -159,7 +159,7 @@ This guide describes how to set up the Control Node for the Azure VM Infrastruct
   - Ansible Docker collection
 
 **Follow any prompts** (especially for upgrading or reinstalling Ansible).
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
 ### 5. **Login to Azure**
 
@@ -172,12 +172,12 @@ az login
 - This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
 - Login with your Azure credentials.
 
-![alt text](image-3.png)
-![alt text](image-4.png)
+![alt text](img/image-3.png)
+![alt text](img/image-4.png)
 
 **Come back to prompt press Enter for no change**
 
-![alt text](image-5.png)
+![alt text](img/image-5.png)
 
 ### 6. **Verify Installation (Optional)**
 
@@ -189,7 +189,7 @@ ansible --version
 ansible-galaxy collection list | grep community.docker
 ```
 
-![alt text](image-6.png)
+![alt text](img/image-6.png)
 
 ---
 
