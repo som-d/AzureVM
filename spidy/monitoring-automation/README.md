@@ -198,16 +198,36 @@ ansible-galaxy collection list | grep community.docker
 **Reference:** `terraform/README.md`
 
 1. **Configure Variables:**  
-   Set up `terraform.tfvars` with Azure credentials, VM sizes, etc.  
-   _Screenshot: Sample `terraform.tfvars` file._
+   Set up `variables.tf` with Azure credentials, VM sizes, etc.  
+   _Screenshot: Sample `variables.tf` file._
 2. **Run Terraform:**  
    ```
+   cd terraform
    terraform init
    terraform plan
    terraform apply
    ```
-   _Screenshot: Terraform apply output._
-3. **Collect VM Details:**  
+Type "yes" and Press **Enter**.
+
+**Copy IP to use in ansible inventory**
+
+![alt text](images/tf.png)
+![alt text](images/tf-1.png)
+
+Type "yes" and Press **Enter**.
+
+![alt text](images/tf-2.png)
+
+**Copy IP to use in ansible inventory**
+
+![alt text](images/tf-3.png)
+![alt text](images/tf-4.png)
+
+**Replace "=" with ":"**
+
+![alt text](images/tf-5.png)
+
+3. **VM Details:**  
    Save public IPs and credentials for use with Ansible.
 
 ---

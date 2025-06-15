@@ -39,24 +39,27 @@ This folder contains [Terraform](https://www.terraform.io/) code to provision th
     ```sh
     terraform show   
     ```
+---
 
-6. **Destroy infrastructure:**
-    ```sh
-    terraform destroy
-    ```
+## Cleaning Up
+
+To remove all resources created by Terraform:
+```sh
+terraform destroy
+```
 
 ---
 
 ## Variables
 
-- Define your own values in a `terraform.tfvars` file or pass them with `-var` flags.
+- Define your own values in a `variables.tf` file.
 - Sensitive variables (like secrets or keys) should **not** be committed to version control.
 
 ---
 
 ## Outputs
 
-- After `terraform apply`, note the output values (such as public IPs) – these are often used by Ansible inventory for subsequent configuration.
+- After `terraform apply`, note the output values (such as public IPs) – these are used by Ansible inventory for subsequent configuration.
 
 ---
 
@@ -77,14 +80,6 @@ terraform output -json > tf_outputs.json
 - Use modules for reusable infrastructure.
 - Commit only non-sensitive files (`*.tf`, not `terraform.tfvars` or `.terraform/`).
 
----
-
-## Cleaning Up
-
-To remove all resources created by Terraform:
-```sh
-terraform destroy
-```
 
 ---
 
