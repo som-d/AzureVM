@@ -50,7 +50,7 @@ This Standard Operating Procedure (SOP) outlines the automated setup of a scalab
 
 ## Project Overview & Structure
 
-- **Main Directory:** `spidy/monitoring-automation`
+- **Main Directory:** `monitoring-automation`
 - **Subfolders:**
   - `control-node/`: Control Node configuration and setup scripts
   - `terraform/`: Infrastructure as Code for Azure VMs
