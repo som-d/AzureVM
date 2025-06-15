@@ -360,5 +360,15 @@ Type "yes" and Press **Enter**.
 
 ---
 
+**clean UP**
+
+   ![alt text](image.png)
+
+   Type **yes** and Press **Enter**
+
+   ![alt text](image-1.png)
+
+   ![alt text](image-2.png)
+---
 **Questions?**  
 Open an issue in this repo or contact [soham](mailto:sohamdeshmukh611@gmail.com) (project owner).
