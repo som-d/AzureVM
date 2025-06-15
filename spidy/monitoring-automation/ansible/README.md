@@ -6,60 +6,29 @@ This project automates the deployment of a full-featured open-source monitoring 
 
 ---
 
-## Features
-
-- Infrastructure as Code: Use Terraform (not included here) to provision VMs and outputs their IPs.
-- Ansible playbook installs Docker & Docker Compose and configures everything.
-- Docker Compose manages all services on the collector VM.
-- Easy-to-extend: Add more Node Exporter agents (just add to `group_vars/all_vars.yml`).
-- Preloaded Grafana dashboards, datasources, and Prometheus alerts.
-
----
-
 ## Project Structure
 
 ```plaintext
 ansible/
 ├── inventory.ini
 ├── main.yml
+├── README.md
 ├── group_vars/
 │   └── all_vars.yml
 ├── files/
 │   ├── docker-compose.yml
-│   ├── prometheus.yml
+│   ├── prometheus.yml.j2
 │   ├── alert.rules.yml
 │   └── grafana/
-│       ├── datasources/
-│       │   └── datasource.yml
-│       └── dashboards/
-│           └── node_exporter_dashboard.json
+│       ├── dashboards/
+│       │   └── node_exporter_dashboard.json
+│       ├── provisioning/
+│       │   └── dashboards
+│       │       └── dashboards.yml
+│       │   └── datasource
+│       │       └── datasource.yml
+│       
 ```
-
----
-
-## Usage — Step by Step
-
-1. **Provision Azure VMs**
-   - Use your existing Terraform to create VMs and NSG rules.
-   - Note the public/private IPs for collector and agent.
-
-2. **Update Ansible Variables**
-   - Edit `group_vars/all_vars.yml` to reflect your VM IPs and alert email.
-
-3. **Update Inventory**
-   - Edit `inventory.ini` with the public IPs of your VMs.
-
-4. **Run the Playbook**
-   ```sh
-   cd ansible
-   ansible-playbook -i inventory.ini main.yml
-   ```
-
-5. **Access Services**
-   - Grafana: `http://<collector_public_ip>:3000`   userid: admin  passwd: admin (default) then navigate to Home > Dashboards > Node Exporter Full (dashboardName)
-   - Prometheus: `http://<collector_public_ip>:9090`
-   - Alertmanager: `http://<collector_public_ip>:9093`
-   - Uptime Kuma: `http://<collector_public_ip>:3001`
 
 ---
 
@@ -80,16 +49,30 @@ ansible/
 
 ---
 
-## For Clients & Freelancers
-
-- Fork/clone this repo for every project.
-- Update `group_vars/all_vars.yml` for each client.
-- Use the same structure for new monitoring gigs (Fiverr, Upwork, etc).
-- All config is managed from variables for easy maintenance.
-
----
-
 ## Security Notes
 
 - Ensure SSH keys are used for Ansible access.
 - Open only necessary ports in Azure NSG (22, 3000, 9090, 9093, 3001, 9100).
+
+---
+
+## Usage — Step by Step
+
+1. **Update Ansible Variables**
+   - Edit `group_vars/all_vars.yml` to reflect your VM IPs and alert email.
+
+2. **Update Inventory**
+   - Edit `inventory.ini` with the public IPs of your VMs.
+
+3. **Run the Playbook**
+   ```sh
+   cd ansible
+   ansible-playbook -i inventory.ini main.yml
+   ```
+   Type **yes** press **Enter** again type **yes** press **Enter**
+
+4. **Access Services**
+   - Grafana: `http://<collector_public_ip>:3000`   userid: admin  passwd: admin (default) then navigate to Home > Dashboards > Node Exporter Full (dashboardName)
+   - Prometheus: `http://<collector_public_ip>:9090`
+   - Alertmanager: `http://<collector_public_ip>:9093`
+   - Uptime Kuma: `http://<collector_public_ip>:3001`

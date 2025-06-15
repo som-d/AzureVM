@@ -11,6 +11,16 @@ This Standard Operating Procedure (SOP) outlines the automated setup of a scalab
 
 ---
 
+## Features
+
+- Infrastructure as Code: Use Terraform (not included here) to provision VMs and outputs their IPs.
+- Ansible playbook installs Docker & Docker Compose and configures everything.
+- Docker Compose manages all services on the collector VM.
+- Easy-to-extend: Add more Node Exporter agents (just add to `group_vars/all_vars.yml`).
+- Preloaded Grafana dashboards, datasources, and Prometheus alerts.
+
+---
+
 ## Why This SOP?
 
 - **For Clients:**  
@@ -198,8 +208,11 @@ ansible-galaxy collection list | grep community.docker
 **Reference:** `terraform/README.md`
 
 1. **Configure Variables:**  
-   Set up `variables.tf` with Azure credentials, VM sizes, etc.  
-   _Screenshot: Sample `variables.tf` file._
+   Set up `variables.tf` with Azure credentials, location etc.  
+   update `vms.tf` file for adding more vms and configuring vms settings
+
+   ![alt text](images/tf-6.png)
+
 2. **Run Terraform:**  
    ```
    cd terraform
@@ -240,7 +253,112 @@ Type "yes" and Press **Enter**.
 
 ---
 
+## Ansible Automation
 
+**Reference:**  
+- `ansible/README.md`  
+
+---
+
+## How to Customize
+
+- **Add more agents:**  
+  - Deploy Node Exporter on additional VMs.
+  - Add their private IP and port to `prometheus_targets` in `group_vars/all_vars.yml`.
+
+- **Change alert rules:**  
+  - Edit `files/alert.rules.yml`.
+
+- **Add/replace dashboards:**  
+  - Place JSON files in `files/grafana/dashboards/`.
+
+- **Change alert email:**  
+  - Edit `alert_email` in `group_vars/all_vars.yml`.
+
+---
+
+## Security Notes
+
+- Ensure SSH keys are used for Ansible access.
+- Open only necessary ports in Azure NSG (22, 3000, 9090, 9093, 3001, 9100).
+
+---
+
+## Usage — Step by Step
+
+1. **Update Ansible Variables**
+   - Edit `group_vars/all_vars.yml` to reflect your VM IPs and alert email.
+
+
+2. **Update Inventory**
+   - Edit `inventory.ini` with the public IPs of your VMs.
+
+3. **Run the Playbook**
+   ```sh
+   cd ..
+   cd ansible
+   ansible-playbook -i inventory.ini main.yml
+   ```
+   Type **yes** press **Enter** again type **yes** press **Enter**
+
+   ![alt text](image.png)
+
+4. **Access Services**
+   - Grafana: `http://<collector_public_ip>:3000`   userid: admin  passwd: admin (default) then navigate to Home > Dashboards > Node Exporter Full (dashboardName)
+   - Prometheus: `http://<collector_public_ip>:9090`
+   - Alertmanager: `http://<collector_public_ip>:9093`
+   - Uptime Kuma: `http://<collector_public_ip>:3001`
+
+---
+
+## Appendix: Screenshots & References
+
+- **Grafana Login**
+
+   ![alt text](image-1.png)
+
+   ![alt text](image-2.png)
+
+- **Grafana Dashboard**
+
+   navigate to Home > Dashboards > Node Exporter Full (dashboardName) 
+   Click on **Node Exporter Full**
+
+   ![alt text](image-3.png)
+
+   ![alt text](image-4.png)
+
+- **Prometheus Dashboard**
+   Navigate to Status > Target health
+
+   ![alt text](image-6.png)
+
+   ![alt text](image-5.png)
+
+   **In Alerts**
+
+   ![alt text](image-7.png)
+
+- **Alertmanager**
+
+   ![alt text](image-8.png)
+
+- **Uptime Kuma**
+
+   ![alt text](image-9.png)
+---
+## Best Practices & Troubleshooting
+
+- **Security:**  
+  SSH keys preferred; secrets never hard-coded.
+- **Idempotency:**  
+  All scripts/playbooks are safe to run multiple times.
+- **Error Handling:**  
+  Common issues (auth, connectivity, variable misconfiguration) and solutions included.
+- **Extensibility:**  
+  Easy to add new nodes, collectors, or monitoring tools.
+
+---
 
 **Questions?**  
 Open an issue in this repo or contact [soham](mailto:sohamdeshmukh611@gmail.com) (project owner).

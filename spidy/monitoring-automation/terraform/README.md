@@ -4,11 +4,16 @@ This folder contains [Terraform](https://www.terraform.io/) code to provision th
 
 ---
 
-## Prerequisites
+## Variables
 
-- [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) installed
-- Cloud provider credentials (AWS, Azure, GCP, etc.) configured locally or via environment variables
-- (Optional) SSH key pair for remote access to created VMs
+- Set up `variables.tf` with Azure credentials, location etc.  
+- Update `vms.tf` file for adding more vms and configuring vms settings
+
+---
+
+## IMP
+
+- After `terraform apply`, note the output values (such as IPs) – these are used by Ansible inventory for subsequent configuration.
 
 ---
 
@@ -40,6 +45,14 @@ This folder contains [Terraform](https://www.terraform.io/) code to provision th
     ```sh
     terraform show   
     ```
+    Type "yes" and Press **Enter**.
+
+6. **VM Details:**  (**VIMP**)
+   Save IPs and credentials for use with Ansible.
+
+   Past the IP in ansible/group_vars/all_vars.yml
+   
+   Replace "=" with ":"
 ---
 
 ## Cleaning Up
@@ -51,47 +64,9 @@ terraform destroy
 
 ---
 
-## Variables
-
-- Define your own values in a `variables.tf` file.
-- Sensitive variables (like secrets or keys) should **not** be committed to version control.
-
----
-
-## Outputs
-
-- After `terraform apply`, note the output values (such as public IPs) – these are used by Ansible inventory for subsequent configuration.
-
----
-
-## Example: Using Outputs in Ansible
-
-You can generate an inventory file dynamically using Terraform output:
-```sh
-terraform output -json > tf_outputs.json
-# Use a script or tool to convert tf_outputs.json to Ansible inventory if needed
-```
-
----
-
 ## Best Practices
 
 - Use remote state (e.g., S3, Azure Blob) for team collaboration.
 - Keep provider credentials secure.
 - Use modules for reusable infrastructure.
 - Commit only non-sensitive files (`*.tf`, not `terraform.tfvars` or `.terraform/`).
-
-
----
-
-## References
-
-- [Terraform Documentation](https://www.terraform.io/docs)
-- [Terraform Providers](https://registry.terraform.io/browse/providers)
-- [HashiCorp Configuration Language](https://www.terraform.io/language)
-
----
-
-## License
-
-MIT

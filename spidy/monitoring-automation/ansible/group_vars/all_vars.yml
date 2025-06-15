@@ -10,15 +10,19 @@ agent_private_ip: "10.0.1.5"
 agent_public_ip: "40.71.45.177"
 collector_private_ip: "10.0.1.4"
 collector_public_ip: "52.170.103.51"
+collector_vm_name: "collector-vm"
+agent_vm_name: "agent-vm"
 
-
+# Azure VM details
 ansible_user: azureuser
 
 
 # Add more servers to the list below as needed
 prometheus_targets:
-  - "{{ collector_private_ip }}:9100"
-  - "{{ agent_private_ip }}:9100"
+  - target: "{{ collector_private_ip }}:9100"
+    name: "{{collector_vm_name}}"
+  - target: "{{ agent_private_ip }}:9100"
+    name: "{{agent_vm_name}}"
 
 grafana_port: 3000
 prometheus_port: 9090
