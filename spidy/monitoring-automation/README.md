@@ -172,7 +172,6 @@ After the script completes, run:
 ```sh
 az login
 ```
-**Come back to prompt press Enter for no change**
 
 - This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
 - Login with your Azure credentials.
