@@ -1,8 +1,56 @@
-# Control Node Setup Guide
-
-This guide will walk you through using the `controlNode_setup.sh` script to prepare your control node for automation with Terraform, Azure CLI, and Ansible.
+# Azure VM Infrastructure Monitoring Automation - SOP
 
 ---
+
+## Purpose
+
+This Standard Operating Procedure (SOP) outlines the automated setup of a scalable, secure, and maintainable Azure VM monitoring infrastructure using industry best practices.  
+**Target Audience:**  
+- **Clients** evaluating professional automation solutions for Azure infrastructure.  
+- **Myself** (or new engineers) as a future-proof, easy-to-follow reference for setup, maintenance, and expansion.
+
+---
+
+## Why This SOP?
+
+- **For Clients:**  
+  This SOP is designed to showcase not only my technical expertise but also my commitment to clear communication, repeatability, and world-class delivery. You’ll see that I deliver solutions you can trust, scale, and hand off to your team with confidence.
+
+- **For Myself/Team:**  
+  This document ensures that anyone—returning after years or onboarding for the first time—can quickly and accurately deploy, update, or extend this automation without guesswork. It minimizes operational risk and maximizes business continuity.
+
+---
+
+## What Sets This Solution Apart?
+
+- **Enterprise-Ready Standards:**  
+- **Clear Documentation:**  
+- **Future-Proof:**  
+- **Professional Delivery:**  
+
+---
+
+## Table of Contents
+
+1. [Project Overview & Structure](#project-overview--structure)
+2. [Control Node Setup](#control-node-setup)
+3. [Terraform: Azure VM Provisioning](#terraform-azure-vm-provisioning)
+4. [Ansible Automation](#ansible-automation)
+5. [Best Practices & Troubleshooting](#best-practices--troubleshooting)
+6. [Appendix: Screenshots & References](#appendix-screenshots--references)
+
+---
+
+## Project Overview & Structure
+
+- **Main Directory:** `spidy/monitoring-automation`
+- **Subfolders:**
+  - `control-node/`: Control Node configuration and setup scripts
+  - `terraform/`: Infrastructure as Code for Azure VMs
+  - `ansible/`: Playbooks, inventory, and variables for automation
+![alt text](image.png)
+---
+
 
 ## VM Configuration Recommendation
 
@@ -34,7 +82,7 @@ Before you begin, make sure your control node VM meets the following minimum con
 
 ## setup VS Code (on your laptop) to control project on VM (optional)
 
-You can use [Visual Studio Code](https://code.visualstudio.com/) with the **Remote - SSH** extension for a rich, graphical development experience directly on your control node.
+VS Code will connect and open a new window where you are now working **directly on the control node**. You can open folders, edit files, run terminals, and use all VS Code features as if you were local.
 
 ### **Step 1: Install Prerequisites**
 
@@ -62,7 +110,6 @@ ssh-copy-id <your-username>@<control-node-ip>
    ```
 4. Select your saved SSH configuration or enter details when prompted.
 
-VS Code will connect and open a new window where you are now working **directly on the control node**. You can open folders, edit files, run terminals, and use all VS Code features as if you were local.
 
 ---
 
@@ -72,8 +119,9 @@ VS Code will connect and open a new window where you are now working **directly 
 - For any login or permission issues, ensure your user has `sudo` privileges.
 - For SSH connection issues, ensure port 22 is open and accessible, and your user is correctly configured on the control node.
 
----
+![alt text](img/image-1.png)
 
+---
 ## Step-by-Step Control Node Setup Instructions
 
 
@@ -83,7 +131,7 @@ This guide describes how to set up the Control Node for the Azure VM Infrastruct
 
 ## Steps
 
-1. **Clone the Repository**
+1. **Clone the Repository on control node**
    ```sh
    git clone <your-repo-url>
    ```
@@ -111,6 +159,7 @@ This guide describes how to set up the Control Node for the Azure VM Infrastruct
   - Ansible Docker collection
 
 **Follow any prompts** (especially for upgrading or reinstalling Ansible).
+![alt text](image-2.png)
 
 ### 5. **Login to Azure**
 
@@ -118,8 +167,17 @@ After the script completes, run:
 ```sh
 az login
 ```
+**Come back to prompt press Enter for no change**
+
 - This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
 - Login with your Azure credentials.
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+**Come back to prompt press Enter for no change**
+
+![alt text](image-5.png)
 
 ### 6. **Verify Installation (Optional)**
 
@@ -131,11 +189,7 @@ ansible --version
 ansible-galaxy collection list | grep community.docker
 ```
 
----
-
-## Next Steps
-
-You’re now ready to use Terraform, Azure CLI, and Ansible for automation tasks!
+![alt text](image-6.png)
 
 ---
 
