@@ -130,7 +130,7 @@ az --version
 ansible --version
 ansible-galaxy collection list | grep community.docker
 ```
-
+![alt text](image.png)
 ---
 
 ## Next Steps
