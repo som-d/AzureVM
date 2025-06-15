@@ -75,15 +75,13 @@ Before you begin, make sure your control node VM meets the following minimum con
 | **Region**          | Close to your location          |
 
 - **Tip:** You can use a Standard B2s (Azure) / t3.small (AWS) or better.
-- **Ensure:** You can SSH into the VM and have internet access.
 
 ---
 
 ## Prerequisites
 
-- You have access to the control node (a Linux VM, e.g., Ubuntu).
+- You have access to internet on the control node ( a Linux VM, e.g., Ubuntu).
 - You can connect via SSH or already have a terminal open on the node.
-- You have the `controlNode_setup.sh` file (provided in this repo).
 
 ---
 
