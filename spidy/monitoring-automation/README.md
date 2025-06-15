@@ -180,7 +180,7 @@ az login
 ![alt text](images/image-3.png)
 ![alt text](images/image-4.png)
 
-**Come back to prompt press Enter for no change**
+Come back to prompt press **Enter** for no change
 
 ![alt text](images/image-5.png)
 
