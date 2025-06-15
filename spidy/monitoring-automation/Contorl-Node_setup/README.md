@@ -32,70 +32,7 @@ Before you begin, make sure your control node VM meets the following minimum con
 
 ---
 
-## Step-by-Step Instructions
-
-### 1. **Copy the Script to Control Node**
-
-From your **laptop**:
-
-- If your control node is a remote VM, copy the script using `scp`:
-  ```sh
-  scp ./controlNode_setup.sh <your-username>@<control-node-ip>:~
-  ```
-- If you are already on the control node, just make sure the script file is in your home or working directory.
-
-### 2. **Connect to the Control Node**
-
-From your **laptop**:
-
-- SSH into your control node:
-  ```sh
-  ssh <your-username>@<control-node-ip>
-  ```
-
-### 3. **Make the Script Executable**
-
-On the **control node** terminal:
-```sh
-chmod +x ./controlNode_setup.sh
-```
-
-### 4. **Run the Setup Script**
-
-On the **control node** terminal:
-```sh
-./controlNode_setup.sh
-```
-- The script will check for and install or upgrade:
-  - Terraform
-  - Azure CLI
-  - Ansible (with user prompts if conflicts)
-  - Ansible Docker collection
-
-**Follow any prompts** (especially for upgrading or reinstalling Ansible).
-
-### 5. **Login to Azure**
-
-After the script completes, run:
-```sh
-az login
-```
-- This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
-- Login with your Azure credentials.
-
-### 6. **Verify Installation (Optional)**
-
-Check that each tool is ready by running:
-```sh
-terraform version
-az --version
-ansible --version
-ansible-galaxy collection list | grep community.docker
-```
-
----
-
-## Using VS Code to Connect via SSH (from your laptop)
+## setup VS Code (on your laptop) to control project on VM (optional)
 
 You can use [Visual Studio Code](https://code.visualstudio.com/) with the **Remote - SSH** extension for a rich, graphical development experience directly on your control node.
 
@@ -137,9 +74,113 @@ VS Code will connect and open a new window where you are now working **directly 
 
 ---
 
+## Step-by-Step Control Node Setup Instructions
+
+
+This guide describes how to set up the Control Node for the Azure VM Infrastructure Monitoring Automation project.
+
+---
+
+## Steps
+
+1. **Clone the Repository**
+   ```sh
+   git clone <your-repo-url>
+   ```
+
+2. **Navigate to the Project Directory**
+   ```sh
+   cd monitoring-automation
+   ```
+
+3. **Run the Control Node Setup Script**
+   For Linux:
+   ```sh
+   ./Control-Node_setup/controlNode_setup_linux.sh
+   ```
+
+   > _Ensure the script has execution permissions. If not, run:_
+   > ```sh
+   > chmod +x ./Control-Node_setup/controlNode_setup_linux.sh
+   > ```
+
+- The script will check for and install or upgrade:
+  - Terraform
+  - Azure CLI
+  - Ansible (with user prompts if conflicts)
+  - Ansible Docker collection
+
+**Follow any prompts** (especially for upgrading or reinstalling Ansible).
+
+### 5. **Login to Azure**
+
+After the script completes, run:
+```sh
+az login
+```
+- This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
+- Login with your Azure credentials.
+
+### 6. **Verify Installation (Optional)**
+
+Check that each tool is ready by running:
+```sh
+terraform version
+az --version
+ansible --version
+ansible-galaxy collection list | grep community.docker
+```
+
+---
+
 ## Next Steps
 
 You’re now ready to use Terraform, Azure CLI, and Ansible for automation tasks!
+
+---
+
+
+### 1. **Copy the Script to Control Node** (optional : if you dont want to clone repo)
+
+From your **laptop**:
+
+- If your control node is a remote VM, copy the script using `scp`:
+  ```sh
+  scp ./controlNode_setup.sh <your-username>@<control-node-ip>:~
+  ```
+- If you are already on the control node, just make sure the script file is in your home or working directory.
+
+### 2. **Connect to the Control Node**
+
+From your **laptop**:
+
+- SSH into your control node:
+  ```sh
+  ssh <your-username>@<control-node-ip>
+  ```
+
+### 3. **Make the Script Executable**
+
+On the **control node** terminal:
+```sh
+chmod +x ./controlNode_setup.sh
+```
+
+### 4. **Run the Setup Script**
+
+On the **control node** terminal:
+```sh
+./controlNode_setup.sh
+```
+
+### 5. **Login to Azure**
+
+After the script completes, run:
+```sh
+az login
+```
+- This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
+- Login with your Azure credentials.
 
 ---
 
