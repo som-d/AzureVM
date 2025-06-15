@@ -193,50 +193,26 @@ ansible-galaxy collection list | grep community.docker
 
 ---
 
+## Terraform: Azure VM Provisioning
 
-### 1. **Copy the Script to Control Node** (optional : if you dont want to clone repo)
+**Reference:** `terraform/README.md`
 
-From your **laptop**:
-
-- If your control node is a remote VM, copy the script using `scp`:
-  ```sh
-  scp ./controlNode_setup.sh <your-username>@<control-node-ip>:~
-  ```
-- If you are already on the control node, just make sure the script file is in your home or working directory.
-
-### 2. **Connect to the Control Node**
-
-From your **laptop**:
-
-- SSH into your control node:
-  ```sh
-  ssh <your-username>@<control-node-ip>
-  ```
-
-### 3. **Make the Script Executable**
-
-On the **control node** terminal:
-```sh
-chmod +x ./controlNode_setup.sh
-```
-
-### 4. **Run the Setup Script**
-
-On the **control node** terminal:
-```sh
-./controlNode_setup.sh
-```
-
-### 5. **Login to Azure**
-
-After the script completes, run:
-```sh
-az login
-```
-- This will open a browser window or give you a code to enter at https://microsoft.com/devicelogin
-- Login with your Azure credentials.
+1. **Configure Variables:**  
+   Set up `terraform.tfvars` with Azure credentials, VM sizes, etc.  
+   _Screenshot: Sample `terraform.tfvars` file._
+2. **Run Terraform:**  
+   ```
+   terraform init
+   terraform plan
+   terraform apply
+   ```
+   _Screenshot: Terraform apply output._
+3. **Collect VM Details:**  
+   Save public IPs and credentials for use with Ansible.
 
 ---
 
+
+
 **Questions?**  
-Open an issue in this repo or contact [soham](mailto:sohamdeshmukh611@gmail.com) (project maintainer).
+Open an issue in this repo or contact [soham](mailto:sohamdeshmukh611@gmail.com) (project owner).
