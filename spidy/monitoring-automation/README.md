@@ -5,9 +5,6 @@
 ## Purpose
 
 This Standard Operating Procedure (SOP) outlines the automated setup of a scalable, secure, and maintainable Azure VM monitoring infrastructure using industry best practices.  
-**Target Audience:**  
-- **Clients** evaluating professional automation solutions for Azure infrastructure.  
-- **Myself** (or new engineers) as a future-proof, easy-to-follow reference for setup, maintenance, and expansion.
 
 ---
 
