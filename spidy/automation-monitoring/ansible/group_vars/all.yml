@@ -1,0 +1,18 @@
+---
+collector_public_ip: "13.90.248.136"
+collector_private_ip: "10.0.1.4"
+agent_public_ip: "52.170.210.45"
+agent_private_ip: "10.0.1.5"
+ansible_user: azureuser
+
+prometheus_targets:
+  - "{{ collector_private_ip }}:9100"
+  - "{{ agent_private_ip }}:9100"
+
+grafana_port: 3000
+prometheus_port: 9090
+alertmanager_port: 9093
+uptimekuma_port: 3001
+node_exporter_port: 9100
+
+alert_email: "sohamdeshmukh611@gmail.com"

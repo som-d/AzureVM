@@ -1,0 +1,9 @@
+{
+  "name": "ok",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "ls"
+    }
+  ]
+}

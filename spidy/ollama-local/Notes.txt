@@ -1,0 +1,16 @@
+uvicorn app:app --reload   #to start the server
+uvicorn app:app --reload --port 8001  #to run on diffrent port
+
+#command to test AI 
+curl -X POST http://localhost:8000/chat \
+     -H "Content-Type: application/json" \
+     -d '{"prompt": "What is Docker?"}'
+
+curl http://localhost:11434 #tocheck ollama is running or not
+OLLAMA_URL = "http://localhost:11434/api/generate" #ollama responds on this url
+
+ollama list   #to list all ollama models
+ollama rm <modelName>  #to remove from system
+
+sudo lsof -i :8000  #to check port is busy or not
+kill -9 <uvicorn pid>  #to kill the process

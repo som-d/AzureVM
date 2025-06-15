@@ -1,0 +1,17 @@
+{
+  "name": "Nginx Setup",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "sudo apt update && sudo apt install nginx -y"
+    },
+    {
+      "type": "shell",
+      "command": "sudo systemctl start nginx"
+    },
+    {
+      "type": "shell",
+      "command": "sudo systemctl enable nginx"
+    }
+  ]
+}

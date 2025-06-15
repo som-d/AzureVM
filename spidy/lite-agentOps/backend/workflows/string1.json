@@ -1,0 +1,17 @@
+{
+  "name": "string1",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "ls"
+    },
+    {
+      "type": "shell",
+      "command": "pwd"
+    },
+    {
+      "type": "shell",
+      "command": "ll"
+    }
+  ]
+}

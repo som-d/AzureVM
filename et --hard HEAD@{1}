@@ -1,0 +1,41 @@
+[33mdaa51a1[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33mdaa51a1[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: reset: moving to origin/main
+[33m16e6117[m HEAD@{2}: commit: no
+[33m400e778[m HEAD@{3}: commit: final
+[33m1992ebc[m HEAD@{4}: commit: hulk removed
+[33m7f821f6[m HEAD@{5}: commit: Add .gitignore for Terraform best practices
+[33m0b0c4f2[m HEAD@{6}: commit: Removed .terraform folders from Git tracking
+[33mc0b7894[m HEAD@{7}: commit: commit
+[33m3dfefd6[m HEAD@{8}: commit: update
+[33md9d3b4c[m HEAD@{9}: commit: readme for terraform
+[33m54fc837[m HEAD@{10}: commit: monitoring automation working fine
+[33mc23793c[m HEAD@{11}: commit: letest
+[33mb6ab157[m HEAD@{12}: commit: working need to test automation ones
+[33m53a8dd2[m HEAD@{13}: commit: ControlNode_setup
+[33m0ab7e95[m HEAD@{14}: commit: New resource group created as wel as new linux vm created via terraform and tested successfullly
+[33m3c3c262[m HEAD@{15}: commit: ok
+[33m497e976[m HEAD@{16}: commit: ok
+[33m39d6903[m HEAD@{17}: commit: kr na be
+[33ma984b46[m HEAD@{18}: commit: working on it
+[33mb260fa1[m HEAD@{19}: commit: backend working
+[33mbc3a871[m HEAD@{20}: commit: ok
+[33mdd7dbed[m HEAD@{21}: commit: backend
+[33md25082f[m HEAD@{22}: commit: agentOPs backend
+[33m4d5465f[m HEAD@{23}: commit: UI updated
+[33ma5f8fcd[m HEAD@{24}: commit: packages
+[33m869c6d3[m HEAD@{25}: commit: UI added to AI
+[33m754471b[m HEAD@{26}: commit: ollama api working
+[33m7c07384[m HEAD@{27}: commit: list ollama pid
+[33mc0a3382[m HEAD@{28}: commit: start ollama
+[33m99d21f5[m HEAD@{29}: commit: main.py deleted
+[33mf9c169f[m HEAD@{30}: commit: setup
+[33mad67d3c[m HEAD@{31}: commit: deleted test file
+[33m4d01133[m HEAD@{32}: pull --no-edit: Fast-forward
+[33md002cf6[m HEAD@{33}: pull --tags origin main: Fast-forward
+[33mdf49f24[m HEAD@{34}: pull --tags origin main: Fast-forward
+[33m8211ea5[m HEAD@{35}: commit: 1st commit beee
+[33m2dbbada[m HEAD@{36}: commit: maihu beee
+[33m24fc278[m HEAD@{37}: commit: spidy commit
+[33m108e77e[m HEAD@{38}: commit: hulk commit
+[33m0829a63[m HEAD@{39}: commit: now
+[33m0c5bbcc[m HEAD@{40}: clone: from github.com:som-d/AzureVM.git
