@@ -56,7 +56,7 @@ ansible/
    ```
 
 5. **Access Services**
-   - Grafana: `http://<collector_public_ip>:3000`
+   - Grafana: `http://<collector_public_ip>:3000`   userid: admin  passwd: admin (default) then navigate to Home > Dashboards > Node Exporter Full (dashboardName)
    - Prometheus: `http://<collector_public_ip>:9090`
    - Alertmanager: `http://<collector_public_ip>:9093`
    - Uptime Kuma: `http://<collector_public_ip>:3001`
