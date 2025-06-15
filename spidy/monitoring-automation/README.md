@@ -361,6 +361,10 @@ Type "yes" and Press **Enter**.
 ---
 
 **clean UP**
+   To remove all resources created by Terraform:
+   ```sh
+   terraform destroy
+   ```
 
    ![alt text](image.png)
 
