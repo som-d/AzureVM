@@ -13,8 +13,8 @@ This Standard Operating Procedure (SOP) outlines the automated setup of a scalab
 
 ## Features
 
-- Infrastructure as Code: Use Terraform (not included here) to provision VMs and outputs their IPs.
-- Ansible playbook installs Docker & Docker Compose and configures everything.
+- Infrastructure as Code: Use Terraform to provision VMs and outputs their details.
+- Ansible playbook installs Docker & Docker Compose and other Tools and configures everything.
 - Docker Compose manages all services on the collector VM.
 - Easy-to-extend: Add more Node Exporter agents (just add to `group_vars/all_vars.yml`).
 - Preloaded Grafana dashboards, datasources, and Prometheus alerts.
