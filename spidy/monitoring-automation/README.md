@@ -355,13 +355,13 @@ Type "yes" and Press **Enter**.
    terraform destroy
    ```
 
-   ![alt text](image.png)
+   ![alt text](images/tf-d.png)
 
    Type **yes** and Press **Enter**
 
-   ![alt text](image-1.png)
+   ![alt text](images/tf-d-1.png)
 
-   ![alt text](image-2.png)
+   ![alt text](images/tf-d-2.png)
 
 ---
 **Questions?**  
