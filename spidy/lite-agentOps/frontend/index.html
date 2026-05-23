@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lite AgentOps</title>
+  <link rel="icon" href="data:," />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 800px;
+    }
+    h2 { margin-top: 40px; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+    }
+    .task {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .task-buttons {
+      text-align: right;
+    }
+    button {
+      padding: 8px 14px;
+      margin: 5px;
+    }
+    #output {
+      white-space: pre-wrap;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚙️ Lite AgentOps - Workflow Manager</h1>
+
+<h2> Existing Workflows</h2>
+<select id="workflowList"></select>
+<button onclick="loadWorkflow()">Load</button>
+<button onclick="deleteWorkflow()">Delete</button>
+
+<h2>➕ Create / Edit Workflow</h2>
+
+<label>Describe your workflow (AI Prompt)</label>
+<textarea id="aiPrompt" placeholder="e.g. Install Docker and start service"></textarea>
+<button onclick="generateWithAI()">Generate with AI</button>
+
+<label>Workflow Name</label>
+<input type="text" id="workflowName" placeholder="Enter workflow name" />
+
+<div id="tasksContainer"></div>
+<button onclick="addTask()">Add Command</button>
+<br />
+<button onclick="saveWorkflow()">Save Workflow</button>
+<button onclick="runWorkflow()">Run Workflow</button>
+<button onclick="clearForm()">Clear Form</button>
+
+<h2> Output</h2>
+<div id="output"></div>
+<!-- ONLY the updated <script> section below needs to be replaced -->
+<script>
+  async function runWorkflow() {
+    const name = document.getElementById("workflowName").value;
+    if (!name) return alert("Please enter a workflow name to run.");
+
+    const res = await fetch(`/api/run-workflow/${name}`, { method: "POST" });
+    const data = await res.json();
+
+    if (data.output) {
+      document.getElementById("output").textContent = data.output;
+    } else {
+      document.getElementById("output").textContent = "No output received.";
+    }
+  }
+</script>
+<script>
+
+  const apiBase = "/api";
+
+  async function fetchWorkflows() {
+    const res = await fetch(`${apiBase}/workflows`);
+    const data = await res.json();
+    const list = document.getElementById("workflowList");
+    list.innerHTML = "";
+    data.workflows.forEach(name => {
+      const option = document.createElement("option");
+      option.value = name;
+      option.text = name;
+      list.appendChild(option);
+    });
+  }
+
+  function addTask(command = "") {
+    const container = document.getElementById("tasksContainer");
+    const div = document.createElement("div");
+    div.className = "task";
+    div.innerHTML = `
+      <label>Shell Command</label>
+      <textarea placeholder="Command to run">${command}</textarea>
+      <div class="task-buttons">
+        <button onclick="this.parentElement.parentElement.remove()">Remove</button>
+      </div>
+    `;
+    container.appendChild(div);
+  }
+
+  function clearForm() {
+    document.getElementById("workflowName").value = "";
+    document.getElementById("tasksContainer").innerHTML = "";
+    document.getElementById("output").textContent = "";
+  }
+
+  async function loadWorkflow() {
+    const name = document.getElementById("workflowList").value;
+    if (!name) return;
+    const res = await fetch(`${apiBase}/workflows/${name}`);
+    const data = await res.json();
+    document.getElementById("workflowName").value = data.name;
+    const container = document.getElementById("tasksContainer");
+    container.innerHTML = "";
+    data.tasks.forEach(task => addTask(task.command));
+  }
+
+  async function saveWorkflow() {
+    const name = document.getElementById("workflowName").value.trim();
+    if (!name) return;
+    const tasks = [];
+    document.querySelectorAll(".task textarea").forEach(textarea => {
+      const command = textarea.value.trim();
+      if (command) {
+        tasks.push({ type: "shell", command });
+      }
+    });
+    if (tasks.length === 0) return;
+
+    const body = { name, tasks };
+    await fetch(`${apiBase}/workflows`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    clearForm();
+    fetchWorkflows();
+  }
+
+  async function deleteWorkflow() {
+    const name = document.getElementById("workflowList").value;
+    if (!name) return;
+    if (!confirm(`Delete workflow "${name}"?`)) return;
+    await fetch(`${apiBase}/workflows/${name}`, {
+      method: "DELETE"
+    });
+    fetchWorkflows();
+    clearForm();
+  }
+
+  async function runWorkflow() {
+    const name = document.getElementById("workflowName").value.trim();
+    if (!name) return;
+    const output = document.getElementById("output");
+    output.textContent = "Running...";
+
+    const res = await fetch(`${apiBase}/run-workflow/${name}`, {
+      method: "POST"
+    });
+    const data = await res.json();
+
+    if (data.results) {
+      output.textContent = data.results
+      .map(r => ` ${r.command}\n${typeof r.result === "object" ? JSON.stringify(r.result, null, 2) : r.result}\n`)
+      .join("\n");
+
+    } else {
+      output.textContent = data.detail || "Something went wrong.";
+    }
+  }
+  async function generateWithAI() {
+    const prompt = document.getElementById("aiPrompt").value.trim();
+    if (!prompt) return alert("Enter a prompt to generate workflow.");
+
+    const output = document.getElementById("output");
+    output.textContent = "Generating workflow...";
+
+    try {
+      const res = await fetch("/api/generate-workflow", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await res.json();
+
+      if (data && data.name && data.tasks) {
+        document.getElementById("workflowName").value = data.name;
+        const container = document.getElementById("tasksContainer");
+        container.innerHTML = "";
+        data.tasks.forEach(task => addTask(task.command));
+        output.textContent = "✅ Workflow generated successfully.";
+      } else {
+        output.textContent = "⚠️ Unexpected response from AI.";
+      }
+    } catch (err) {
+      output.textContent = "❌ Error: " + err.message;
+    }
+  }
+
+  fetchWorkflows();
+</script>
+</body>
+</html>

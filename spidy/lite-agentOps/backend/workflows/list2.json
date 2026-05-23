@@ -1,0 +1,25 @@
+{
+  "name": "list2",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "mkdir test"
+    },
+    {
+      "type": "shell",
+      "command": "ls"
+    },
+    {
+      "type": "shell",
+      "command": "la"
+    },
+    {
+      "type": "shell",
+      "command": "pwd"
+    },
+    {
+      "type": "shell",
+      "command": "touch test/test.txt"
+    }
+  ]
+}

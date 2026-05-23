@@ -1,0 +1,76 @@
+Like the format we will update our playbook to this later.
+
+---
+- name: Setup Core Automation & Management Tools on Agent VM
+  hosts: agent
+  become: true
+
+  vars:
+    glpi_version: "10.0.14"
+    vault_version: "1.16.2"
+    awx_version: "24.3.0"
+    consul_version: "1.17.1"
+    stackstorm_version: "3.9.0"
+    glpi_db_password: "ChangeMeStrongPwd"
+    glpi_admin_password: "ChangeMeAdminPwd"
+    awx_admin_password: "ChangeMeAWXPwd"
+    vault_unseal_key: "ChangeMeVaultKey"
+    consul_datacenter: "dc1"
+    consul_node_name: "{{ inventory_hostname }}"
+
+  pre_tasks:
+    - name: Ensure apt cache is up to date (Debian/Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install required base packages
+      package:
+        name:
+          - curl
+          - git
+          - python3-pip
+          - unzip
+          - software-properties-common
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Ensure pip modules for Ansible
+      pip:
+        name:
+          - docker
+          - docker-compose
+        state: present
+
+  roles:
+    - { role: glpi, become: true }
+    - { role: hashicorp.vault, become: true }
+    - { role: awx_install, become: true }
+    - { role: consul, become: true }
+    - { role: stackstorm, become: true }
+
+  # If you don't have roles ready, use tasks below as a starting point.
+  # Comment out roles above and uncomment these to use.
+
+  # tasks:
+  #   - name: Install and configure GLPI (via Docker Compose)
+  #     include_tasks: tasks/glpi.yml
+  #
+  #   - name: Install HashiCorp Vault (via Docker Compose or binary)
+  #     include_tasks: tasks/vault.yml
+  #
+  #   - name: Install Ansible AWX (via official installer or Docker Compose)
+  #     include_tasks: tasks/awx.yml
+  #
+  #   - name: Install Consul (via Docker Compose or binary)
+  #     include_tasks: tasks/consul.yml
+  #
+  #   - name: Install StackStorm (via installer script or Docker Compose)
+  #     include_tasks: tasks/stackstorm.yml
+
+  handlers:
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted

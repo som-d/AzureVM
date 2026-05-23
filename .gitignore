@@ -1,0 +1,14 @@
+panther/
+**/.terraform/
+*.log
+*.pem
+*.key
+*.bak
+*.vscode
+crash.log
+.terraform
+.terraform.*
+.terraform.lock.hcl
+terraform.tfstate*
+panther/
+infrastructure-pipeline/

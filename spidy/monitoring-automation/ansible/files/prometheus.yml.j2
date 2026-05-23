@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['localhost:9093']
+
+rule_files:
+  - "alert.rules.yml"
+
+- job_name: 'node-exporter'
+    static_configs:
+    {% for item in prometheus_targets %}
+      - targets: ['{{ item.target }}']
+        labels:
+          instance: '{{ item.name }}'
+    {% endfor %}
